@@ -1,16 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld v-model:houses="houses"/>
+  <DisplayList :houses="houses"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import DisplayList from './components/DisplayList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+    DisplayList
+  },
+  data() {
+    return {
+      houses: []
+    }
+  },
 }
 </script>
 

@@ -1,40 +1,70 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <h1>Wizarding World Quiz</h1>
+  <div id="quiz">
+    <!-- <button @click="getHouses">Start the Quiz!</button> -->
   </div>
+  <button id="submit">Get Results</button>
+  <div id="results"></div>
+
 </template>
 
 <script>
+// eslint-disable-next-line 
+const quizQuestions = [
+  {
+    question: "Which house has a lion for their emblem?",
+    answers: {
+      a: 'Gryffindor',
+      b: 'Ravenclaw',
+      c: 'Hufflepuff',
+      d: 'Slytherin'
+    },
+    correctAnswer: 'a'
+  },
+  {
+    question: "What color does Hufflepuff House wear?",
+    answers: {
+      a: 'red',
+      b: 'blue',
+      c: 'yellow',
+      d: 'green'
+    },
+    correctAnswer: 'c'
+  },
+  {
+    question: "Which founder was head of Ravenclaw?",
+    answers: {
+      a: 'Godric Gryffindor',
+      b: 'Rowena Ravenclaw',
+      c: 'Helga Hufflepuff',
+      d: 'Salazar Slytherin'
+    },
+    correctAnswer: 'b'
+  },
+  {
+    question: "Which ghost belongs to Slytherin House?",
+    answers: {
+      a: 'Nearly Headless Nick',
+      b: 'The Grey Lady',
+      c: 'The Fat Friar',
+      d: 'The Bloody Barron'
+    },
+    correctAnswer: 'd'
+  },
+];
+
+const baseUrl = 'https://wizard-world-api.herokuapp.com/';
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  methods: {
+    getHouses() {
+      let reqUrl = baseUrl + 'Houses';
+
+      fetch(reqUrl)
+        .then((response) => response.json())
+        .then((data) => this.$emit('update:houses', data));
+    }
   }
 }
 </script>
