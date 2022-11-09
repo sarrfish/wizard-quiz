@@ -1,23 +1,29 @@
 <template>
-  <HelloWorld v-model:houses="houses"/>
-  <DisplayList :houses="houses"/>
+  <DisplayQuiz :apiData="apiData"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import DisplayList from './components/DisplayList.vue'
+import DisplayQuiz from './components/DisplayQuiz.vue'
+
+const baseUrl = 'https://wizard-world-api.herokuapp.com/';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    DisplayList
+    DisplayQuiz
   },
   data() {
     return {
-      houses: []
+      apiData: {}
     }
   },
+  mounted() {
+    let reqUrl = baseUrl + 'Houses';
+
+    fetch(reqUrl)
+      .then((response) => response.json())
+      .then((data) => this.apiData = data);    
+  }
 }
 </script>
 
