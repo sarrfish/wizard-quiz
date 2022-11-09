@@ -1,5 +1,5 @@
 <template>
-  <DisplayQuiz :apiData="apiData"/>
+  <DisplayQuiz :houses="houses"/>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      apiData: {}
+      houses: {}
     }
   },
   mounted() {
@@ -22,7 +22,11 @@ export default {
 
     fetch(reqUrl)
       .then((response) => response.json())
-      .then((data) => this.apiData = data);    
+      .then((data) => {
+        for (let d of data) {
+          this.houses[d.name.toLowerCase()] = d;
+        }
+      });    
   }
 }
 </script>
