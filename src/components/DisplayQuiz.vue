@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { text } from 'body-parser';
+
 
 export default {
     name: 'DisplayQuiz',
@@ -27,28 +29,44 @@ export default {
           {
             topic: 'houseColours',
             text: "What color does Hufflepuff House wear?",
-            correct: 'hufflepuff'
+            correctHouse: 'hufflepuff'
           },
           {
             topic: 'founder',
             text: "Which founder was head of Ravenclaw?",
-            correct: 'ravenclaw'
+            correctHouse: 'ravenclaw'
           },
           {
             topic: 'ghost',
             text: "Which ghost belongs to Slytherin House?",
-            correct: 'slytherin'
+            correctHouse: 'slytherin'
+          },
+          {
+            topic: 'element',
+            text: "Which element represents Hufflepuff?",
+            correctHouse: 'hufflepuff'
           },
         ]
       }
     },
     methods: {
       gradeQuiz() {
-        alert('ur a wzrd hairy');
+      alert('yer a wzrd hairy');
         // grade the quiz
-      }
+        // var score = 0;
+
+        // for(var i=0; i < text.length; i++)
+        // var response = text(text[i.text])
+        // if(response == text[i].correctHouse){
+        // this.score++;
+        // } else {
+        //   score = null;
+        // }
+        // alert("you got " + score + "/" + text.length);
     }
+      },
 }
+
 </script>
 
 <style scoped>
