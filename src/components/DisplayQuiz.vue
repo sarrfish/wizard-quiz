@@ -1,9 +1,9 @@
 <template>
   <form>
-    <fieldset v-for="(question, index) in quizQuestions" v-bind:key="index">
+    <fieldset v-for="(question, qdex) in quizQuestions" v-bind:key="qdex">
       <h2>{{ question.text }}</h2>
-      <div v-for="(house, h, index) in houses" v-bind:key="index">
-        <input type="radio" :name="question.topic" :value="h" :id="h" />
+      <div v-for="(house, h, hdex) in houses" v-bind:key="hdex">
+        <input type="radio" :name="question.topic" :value="h" :id="h" v-model="answers[qdex]"/>
         <label :for="h">{{ house[question.topic] }}</label>
       </div>
     </fieldset>
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import { text } from 'body-parser';
-
 
 export default {
     name: 'DisplayQuiz',
@@ -24,29 +22,30 @@ export default {
           {
             topic: 'animal',
             text: "Which animal is the emblem of Gryffindor House?",
-            correctHouse: 'gryffindor'
+            correct: 'gryffindor'
           },
           {
             topic: 'houseColours',
             text: "What color does Hufflepuff House wear?",
-            correctHouse: 'hufflepuff'
+            correct: 'hufflepuff'
           },
           {
             topic: 'founder',
             text: "Which founder was head of Ravenclaw?",
-            correctHouse: 'ravenclaw'
+            correct: 'ravenclaw'
           },
           {
             topic: 'ghost',
             text: "Which ghost belongs to Slytherin House?",
-            correctHouse: 'slytherin'
+            correct: 'slytherin'
           },
           {
             topic: 'element',
             text: "Which element represents Hufflepuff?",
-            correctHouse: 'hufflepuff'
+            correct: 'hufflepuff'
           },
-        ]
+        ],
+        answers: Array(5)
       }
     },
     methods: {
@@ -64,7 +63,7 @@ export default {
         // }
         // alert("you got " + score + "/" + text.length);
     }
-      },
+  },
 }
 
 </script>
